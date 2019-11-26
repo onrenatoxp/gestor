@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <img src="../assets/img/logo.png" />
+    </ion-title>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content class="ion-padding"  [formGroup]="formGrupo" >
+
+    <ion-item>
+        <ion-icon slot="start" name="person"></ion-icon>
+        <ion-label position="fixed">CPF:</ion-label>
+
+        <ion-input type="tel" formControlName="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-icon slot="start" name="calendar"></ion-icon>
+          <ion-label position="fixed">Mês/ Ano</ion-label>
+          <ion-datetime  formControlName="data" displayFormat="DD/MM/YYYY" min="2010-01-01" max="2030-12-31"></ion-datetime>
+       </ion-item>
+
+  
+          <ion-button color="success" expand="block">Pesquisar</ion-button>
+  
+
+
+</ion-content>
