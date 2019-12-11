@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhe das tarefas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+    <ion-list-header style="font-size: 15px;">
+        <ion-label><b>Tarefa(s) do dia: {{data}}</b></ion-label>
+      </ion-list-header>
+    <ion-item *ngFor="let item of tarefas">
+      <ion-grid>
+        <ion-row>
+          <ion-col><b>Tarefa</b>: {{item.idTarefa}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              <label><b>Atividade</b>: {{item.idAtividade}} </label>
+              <br>
+              {{item.descricao}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col><b>Horas trabalhadas</b>: {{item.horasTrabalhadas}}</ion-col>
+            </ion-row>
+      </ion-grid>
+    </ion-item>
+</ion-list>
+</ion-content>

@@ -3,7 +3,6 @@
   overflow: hidden;
 }
 
-
 .divlogo{
   background: #3880ff;
   text-align: center;
@@ -11,4 +10,17 @@
 
 ion-title img{
   width: 130px;;
+}
+
+.on-badge{
+
+  --padding: 12px;
+}
+
+.up{
+  color: #3880ff;
+}
+
+.down{
+  color: #ff3838;
 }

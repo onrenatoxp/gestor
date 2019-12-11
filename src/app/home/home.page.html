@@ -12,6 +12,8 @@
 
 <ion-content class="ion-padding"  [formGroup]="formGrupo" >
 
+  <h4 class="ion-padding">Controle de Horas do Gestor</h4>
+
     <ion-item>
         <ion-icon slot="start" name="person"></ion-icon>
         <ion-label position="fixed">CPF:</ion-label>
@@ -21,13 +23,64 @@
 
       <ion-item>
           <ion-icon slot="start" name="calendar"></ion-icon>
-          <ion-label position="fixed">Mês/ Ano</ion-label>
+          <ion-label position="fixed">Data:</ion-label>
           <ion-datetime  formControlName="data" displayFormat="DD/MM/YYYY" min="2010-01-01" max="2030-12-31"></ion-datetime>
        </ion-item>
 
-  
-          <ion-button color="success" expand="block">Pesquisar</ion-button>
-  
+       
+       <ion-button (click)="pesquisar()" color="success" expand="block" [disabled]="!formGrupo.valid">Pesquisar</ion-button>
 
+       <h5 style="margin-top: 50px;  margin-left:16px;">{{horasTotal?.usuario}}</h5>
+
+      
+       <ion-list  *ngIf="isRegistrosDia">
+        <ion-list-header style="font-size: 15px;">
+          <ion-label><b>Resumo do dia {{dia}}/{{mes}}/{{ano}}:</b></ion-label>
+        </ion-list-header>
+        <ion-item>
+          <label>Total de horas:</label>
+          <ion-badge slot="end">{{horasTotal?.dia}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <label>Saldo de horas:</label>
+          <ion-badge [color]="saldoDia.includes('-')?'danger':'success'" slot="end">{{saldoDia}}</ion-badge>
+        </ion-item>
+      </ion-list>
+
+          <ion-list  *ngIf="isRegistrosDia">
+            <ion-list-header style="font-size: 15px;">
+              <ion-label><b>Resumo do mês {{mes}}/{{ano}}:</b></ion-label>
+            </ion-list-header>
+            <ion-item>
+              <label>Dias trabalhados:</label>
+              <div color="tertiary" slot="end">{{listaMes?.length}} dias</div>
+            </ion-item>
+            <ion-item>
+              <label>Total de horas previstas mês:</label>
+              <div color="tertiary" slot="end">{{previsao}} hs</div>
+            </ion-item>
+            <ion-item>
+              <label>Total de horas no mês: </label>
+              <ion-badge color="tertiary" slot="end">{{horasTotal?.mes}}</ion-badge>
+            </ion-item>
+            <ion-item>
+              <label>Saldo de horas mês:</label>
+              <ion-badge [color]="saldoMes.includes('-')?'danger':'success'" slot="end">{{saldoMes}}</ion-badge>
+            </ion-item>
+          </ion-list>
+
+          <ion-list style="margin-top: 20px;"  *ngIf="isRegistrosDia">
+            <ion-list-header style="font-size: 15px;">
+              <ion-label><b>Detalhamento do mês: {{mes}}/{{ano}}</b></ion-label>
+            </ion-list-header>
+            <ion-item>
+              <label>Data</label>
+              <label  slot="end">Horas</label>
+            </ion-item>
+            <ion-item  *ngFor="let item of listaMes" (click)="openTarefa(item)">
+              <label>{{item.dataInicio}}</label>
+              <label slot="end" [class]="item.situacao">{{item.horasTrabalhadas}}</label>
+            </ion-item>
+          </ion-list>
 
 </ion-content>
